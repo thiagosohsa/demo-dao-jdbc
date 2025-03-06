@@ -17,7 +17,7 @@ import model.entities.Department;
 import model.entities.Seller;
 
 public class SellerDaoJDBC implements SellerDao {
-	
+
 	private Connection conn;
 	
 	public SellerDaoJDBC(Connection conn) {
@@ -61,7 +61,6 @@ public class SellerDaoJDBC implements SellerDao {
 		finally {
 			DB.closeStatement(st);
 		}
-		
 	}
 
 	@Override
@@ -81,14 +80,14 @@ public class SellerDaoJDBC implements SellerDao {
 			st.setInt(6, obj.getId());
 			
 			st.executeUpdate();
-			
 		}
 		catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(st);
-		}	}
+		}
+	}
 
 	@Override
 	public void deleteById(Integer id) {
@@ -106,7 +105,6 @@ public class SellerDaoJDBC implements SellerDao {
 		finally {
 			DB.closeStatement(st);
 		}
-		
 	}
 
 	@Override
@@ -143,8 +141,8 @@ public class SellerDaoJDBC implements SellerDao {
 		obj.setId(rs.getInt("Id"));
 		obj.setName(rs.getString("Name"));
 		obj.setEmail(rs.getString("Email"));
-		obj.setBirthDate(rs.getDate("BirthDate"));
 		obj.setBaseSalary(rs.getDouble("BaseSalary"));
+		obj.setBirthDate(rs.getDate("BirthDate"));
 		obj.setDepartment(dep);
 		return obj;
 	}
@@ -169,7 +167,7 @@ public class SellerDaoJDBC implements SellerDao {
 			
 			rs = st.executeQuery();
 			
-			List<Seller> list = new ArrayList<Seller>();
+			List<Seller> list = new ArrayList<>();
 			Map<Integer, Department> map = new HashMap<>();
 			
 			while (rs.next()) {
@@ -211,7 +209,7 @@ public class SellerDaoJDBC implements SellerDao {
 			
 			rs = st.executeQuery();
 			
-			List<Seller> list = new ArrayList<Seller>();
+			List<Seller> list = new ArrayList<>();
 			Map<Integer, Department> map = new HashMap<>();
 			
 			while (rs.next()) {
@@ -236,5 +234,4 @@ public class SellerDaoJDBC implements SellerDao {
 			DB.closeResultSet(rs);
 		}
 	}
-
 }
